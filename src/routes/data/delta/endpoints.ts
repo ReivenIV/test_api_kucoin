@@ -1,24 +1,24 @@
-import express from "express";
-import { calculateDelta } from "./functions.js";
+import express, {Request, Response, NextFunction} from 'express';
+import { calculateDelta } from './functions';
 const router = express.Router();
 
+router.post('/', async (req: Request, res: Response, next: NextFunction) => {
 
+    
+  try {
 
-// router.post("/", async (req, res, next) => {
-//   try {
-//     const [result] = await addDrugIntervalUptake(req.body, req.user.userId);
+    
+     const delta: Number = await calculateDelta(req.body.pair1, req.body.pair2)
 
-//     res.status(200).json({
-//       msg: `Added to Database successfully`,
-//       affectedRows: result.affectedRows,
-//       id: result.insertId,
-//     });
-//   } catch (e) {
-//     next(e);
-//   }
-// });
+     console.log("delta" +  delta);
 
+     res.status(200).json({        
+         delta: delta
+     })
 
-
+  } catch (error) {
+    next(error);
+  }
+});
 
 export default router;
