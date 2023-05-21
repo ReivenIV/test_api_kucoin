@@ -19,12 +19,14 @@ export function validator(req: Request, res: Response, next: NextFunction) {
 
   if (
     req.body.pair1 === undefined ||
-    req.body.pair2 === undefined ||
     req.body.pair1 === null ||
-    req.body.pair2 === null
+    req.body.pair1 === '' ||
+    req.body.pair2 === undefined ||
+    req.body.pair2 === null ||
+    req.body.pair2 === ''
   ) {
     const msg = JSON.stringify({
-      msg: 'delta pairs is null/undefined',
+      msg: 'delta pairs are null/undefined or empty',
     });
     const err: any = new Error(msg);
     err.statusCode = 400;
@@ -40,9 +42,13 @@ export function validator(req: Request, res: Response, next: NextFunction) {
     return next(err);
   }
 
-  if (typeof req.body.timezone !== undefined || req.body.timezone === null) {
+  if (
+    typeof req.body.timezone === undefined ||
+    req.body.timezone === null ||
+    req.body.timezone === ''
+  ) {
     const msg = JSON.stringify({
-      msg: 'timezone is null/undefined',
+      msg: 'timezone is null/undefined or empty',
     });
     const err: any = new Error(msg);
     err.statusCode = 400;
