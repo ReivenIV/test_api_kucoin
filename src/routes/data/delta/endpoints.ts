@@ -1,7 +1,7 @@
 import express, { Request, Response, NextFunction } from 'express';
 import { calculateDelta } from './functions';
 import { validator } from './validator';
-
+import { errorHandler } from './../../../middlewares/errorHandler';
 const router = express.Router();
 
 // ------------------------
@@ -11,6 +11,7 @@ const router = express.Router();
 router.post(
   '/',
   validator,
+  errorHandler,
   async (req: Request, res: Response, next: NextFunction) => {
     try {
       const delta: Number = await calculateDelta(
