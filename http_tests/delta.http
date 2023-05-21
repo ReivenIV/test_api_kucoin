@@ -1,0 +1,12 @@
+###
+GET http://localhost:8888/api/v1/delta
+
+
+###
+POST http://localhost:8888/example
+
+{
+    "pair1":"test bro",
+    "pair2":"test2 bro",
+
+}
