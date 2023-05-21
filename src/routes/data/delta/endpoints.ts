@@ -11,7 +11,7 @@ const router = express.Router();
 // ------------------------
 
 router.post(
-  '/',
+  '/v1',
   validator,
   errorHandler,
   async (req: Request, res: Response, next: NextFunction) => {
@@ -24,8 +24,11 @@ router.post(
       let currentTimestamp: String =
         getCurrentUTCTimestamp('with_milliseconds');
       res.status(200).json({
-        created_at: currentTimestamp,
+        pair1: req.body.pair1,
+        pair2: req.body.pair2,
         delta: delta,
+        created_at: currentTimestamp,
+        timezone: req.body.timezone,
       });
     } catch (error) {
       next(error);

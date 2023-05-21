@@ -1,10 +1,11 @@
 // To test these http file you will need ""REST Client"" extention of vs-code
 
 ###
-POST http://localhost:8888/data/delta
+POST http://localhost:8888/data/delta/v1
 Content-Type: application/json
 
 {
     "pair1":"ETH",
-    "pair2":"USDT"
+    "pair2":"USDT",
+    "timezone":"Europe/Paris"
 }
