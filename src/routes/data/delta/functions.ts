@@ -2,6 +2,10 @@ import axios from 'axios';
 import * as dotenv from 'dotenv';
 dotenv.config();
 
+// ------------------------
+//      delta functions
+// ------------------------
+
 const kucoin_url = process.env.KUCOIN_URL;
 
 export async function fetch_market(pair1: string, pair2: string) {
