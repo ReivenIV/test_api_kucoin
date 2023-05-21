@@ -17,5 +17,14 @@ export function validator(req: Request, res: Response, next: NextFunction) {
     return next(err);
   }
 
+  if (typeof req.body.timezone !== 'string') {
+    const msg = JSON.stringify({
+      msg: 'timezone has to be string data type',
+    });
+    const err: any = new Error(msg);
+    err.statusCode = 400;
+    return next(err);
+  }
+
   next();
 }

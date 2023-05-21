@@ -28,7 +28,6 @@ router.post(
         pair2: req.body.pair2,
         delta: delta,
         created_at: currentTimestamp,
-        timezone: req.body.timezone,
       });
     } catch (error) {
       next(error);
