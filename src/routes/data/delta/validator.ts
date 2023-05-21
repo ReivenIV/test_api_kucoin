@@ -1,8 +1,8 @@
 import { Request, Response, NextFunction } from 'express';
 
-// -------------------------------
+// -----------------------
 //      Delta Validator
-// -------------------------------
+// -----------------------
 
 export function validator(req: Request, res: Response, next: NextFunction) {
   if (
@@ -11,6 +11,20 @@ export function validator(req: Request, res: Response, next: NextFunction) {
   ) {
     const msg = JSON.stringify({
       msg: 'delta pairs have to be string data type',
+    });
+    const err: any = new Error(msg);
+    err.statusCode = 400;
+    return next(err);
+  }
+
+  if (
+    req.body.pair1 === undefined ||
+    req.body.pair2 === undefined ||
+    req.body.pair1 === null ||
+    req.body.pair2 === null
+  ) {
+    const msg = JSON.stringify({
+      msg: 'delta pairs is null/undefined',
     });
     const err: any = new Error(msg);
     err.statusCode = 400;
@@ -26,5 +40,13 @@ export function validator(req: Request, res: Response, next: NextFunction) {
     return next(err);
   }
 
+  if (typeof req.body.timezone !== undefined || req.body.timezone === null) {
+    const msg = JSON.stringify({
+      msg: 'timezone is null/undefined',
+    });
+    const err: any = new Error(msg);
+    err.statusCode = 400;
+    return next(err);
+  }
   next();
 }
