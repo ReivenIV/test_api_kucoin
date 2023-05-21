@@ -16,9 +16,6 @@ export async function fetch_market(pair1: string, pair2: string) {
 }
 
 export async function calculateDelta(pair1: string, pair2: string) {
-  console.log(pair1);
-  console.log(pair2);
-
   let data = await fetch_market(pair1, pair2);
 
   let value = data.data;

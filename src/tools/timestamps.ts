@@ -1,9 +1,10 @@
-
 // --------------------------
 //      timestamps tools
 // --------------------------
 
-export function getCurrentUTCTimestamp(kind: 'with_milliseconds' | 'without_milliseconds'): string {
+export function getCurrentUTCTimestamp(
+  kind: 'with_milliseconds' | 'without_milliseconds',
+): string {
   const now = new Date();
   const year = now.getUTCFullYear();
   const month = String(now.getUTCMonth() + 1).padStart(2, '0');
@@ -19,4 +20,3 @@ export function getCurrentUTCTimestamp(kind: 'with_milliseconds' | 'without_mill
     return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
   }
 }
-
